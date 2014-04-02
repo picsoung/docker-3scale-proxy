@@ -12,7 +12,9 @@ RUN echo 'deb http://archive.ubuntu.com/ubuntu precise main universe' > /etc/apt
     apt-get update
 
 ## Install supervisord
-RUN apt-get install -y supervisor && mkdir -p /var/log/supervisor
+RUN apt-get install -y openssh-server supervisor
+RUN mkdir -p /var/run/sshd
+RUN mkdir -p /var/log/supervisor
 
 ## UTILITIES
 RUN apt-get install -y vim wget build-essential
@@ -32,8 +34,8 @@ RUN mkdir -p /opt/3scale/log
 
 ADD conf/nginx_$PROVIDER_ID.conf /opt/3scale/nginx.conf
 ADD conf/nginx_$PROVIDER_ID.lua /opt/3scale/nginx_$PROVIDER_ID.lua
-ADD conf/supervisord.conf /etc/supervisord.conf
+ADD conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-EXPOSE 80
+EXPOSE 22 80
 
-CMD [ "supervisord", "-n"]
+CMD [ "/usr/bin/supervisord", "-n"]
