@@ -4,7 +4,7 @@ MAINTAINER Rhommel Lamas <roml@rhommell.com>
 ## Variables
 ENV OPENRESTY_VERSION 1.5.8.1
 ENV DEBIAN_FRONTEND noninteractive
-ENV PROVIDER_ID 48
+ENV PROVIDER_ID 2445580392072
 
 ## Repositories
 RUN echo 'deb http://archive.ubuntu.com/ubuntu precise main universe' > /etc/apt/sources.list && \
